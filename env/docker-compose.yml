@@ -1,0 +1,32 @@
+#version: "3.8" compose V2の設定変更に伴う廃止
+
+services:
+  notebook1:
+    image: geojackass/orihime
+    container_name: notebook1
+    #Docker コンテナの自動再起動ポリシーは自動復旧，ただし手動設定時は手動を優先
+    restart: unless-stopped
+
+    #ホストとの共有ディレクトリ
+    #コンテナ:ホスト
+    volumes:
+      - ./work:/home/work
+
+    #1番目のコンテナはホスト側:コンテナ側ともに8888:8888とする
+    ##2番目以降のコンテナはホスト側のIPを変更する，コンテナIPは8888:ホスト側IP8889以降を使用する
+    ports:
+      - "8888:8888"   # notebookのアクセスポート
+      - "8765:8765"   # DuckDBブラウザUI
+
+    #JupyterLab 起動コマンド
+    command: start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''
+
+    #I/O高速化(任意:/tmpをRAM上に)
+    tmpfs:
+      - /tmp
+
+    #ファイル制限を緩和
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
