@@ -2,21 +2,40 @@
 
 services:
   notebook1:
-    image: geojackass/orihime
-    container_name: notebook1
+    image: geojackass/orihime:sweet_melody
+    container_name: sweet_melody
     #Docker コンテナの自動再起動ポリシーは自動復旧，ただし手動設定時は手動を優先
     restart: unless-stopped
+
+    #並列計算ライブラリ向け環境変数は初期設定時はOFFにしておく
+    environment:
+#      - JUPYTER_ENABLE_LAB=yes
+#      - OMP_NUM_THREADS=8
+#      - MKL_NUM_THREADS=8
+#      - NUMEXPR_MAX_THREADS=8
+#      - MALLOC_ARENA_MAX=2
+      - DUCKDB_BROWSER_PORT=8765
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=gisdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
 
     #ホストとの共有ディレクトリ
     #コンテナ:ホスト
     volumes:
-      - ./work:/home/work
+      - ./work:/home/jovyan/work
+      - ./pgdata:/var/lib/postgresql/data
 
     #1番目のコンテナはホスト側:コンテナ側ともに8888:8888とする
     ##2番目以降のコンテナはホスト側のIPを変更する，コンテナIPは8888:ホスト側IP8889以降を使用する
     ports:
       - "8888:8888"   # notebookのアクセスポート
       - "8765:8765"   # DuckDBブラウザUI
+      - "5432:5432"   # postgresql
+
+    depends_on:
+      - db
 
     #JupyterLab 起動コマンド
     command: start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''
@@ -30,3 +49,23 @@ services:
       nofile:
         soft: 65535
         hard: 65535
+
+  # ------------------------------------------------
+  # PostGIS Server
+  # ------------------------------------------------
+  db:
+    image: pgrouting/pgrouting:latest
+    container_name: postgis-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: gisdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+      - ./init_postgis_pgr.sql:/docker-entrypoint-initdb.d/init_postgis_pgr.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d gisdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
