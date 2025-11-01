@@ -1,0 +1,11 @@
+data/
+geo/
+img/
+html_pages/
+.RData
+.Rproj
+.Rhistory
+.Rproj.user/
+.Rproj
+gogogs/r_scripts/r_scripts.Rproj
+r_scripts/.RDataTmp
