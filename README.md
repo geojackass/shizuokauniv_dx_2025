@@ -40,7 +40,7 @@ sudo docker compose down
 #### 起動書式
 - 一口目「甘いメロディー」
 ```
-sudo docker compose -f {filename}.yml up -d
+sudo docker compose -f りんご飴.yml up -d
 ```
 
 License
