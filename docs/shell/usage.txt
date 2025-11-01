@@ -1,0 +1,7 @@
+"スライド1.png"資料を"pp1.png"へリネームする．
+sh rename.shを対象画像のディレクトリ内で実行する．
+スライド1,スライド2,スライド3→pp1.png,pp2.png,pp3.png
+
+rename.shで生成された画像を，htmlに埋め込む．
+sh slide_section.sh > slides.html
+書き出された<section>をindex.htmlに追記する

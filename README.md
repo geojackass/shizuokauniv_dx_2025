@@ -1,9 +1,12 @@
 # 静岡大学大学院　情報学専攻 「DX実践論」2025
 
-![top_image](docs/img/pp1.png "top")
+![top_image](docs/img/pp1.png "vol4_top")
+![top_image](docs/img/pp47.png "vol5_top")
 ### 資料は下記URLからご覧ください
-- (GithubPages) https://geojackass.github.io/shizuokauniv_dx_2025/
-- (git clone) docs/index.htmlあるいはPDF資料を参照してください．
+- 第4回講義(GithubPages) https://geojackass.github.io/shizuokauniv_dx_2025/
+- 第5回講義(GithubPages) https://geojackass.github.io/shizuokauniv_dx_2025/#/46
+- 第4回講義(gitclone) /docs/静岡大学20251029講義資料.pdf
+- 第5回講義(gitclone) /docs/静岡大学20251105講義資料.pdf
 
 - 第4回はR，第5回はpythonとQGISを使用します．Dockerで環境を構築する場合は，pythonとRの必要ライブラリが使用可能となります．
 - https://hub.docker.com/r/geojackass/orihime
@@ -12,7 +15,7 @@ orihime:sweet_melodyのbuildはDokcerfileを参照してください．上述の
 ```
 docker pull geojackass/orihime:sweet_melody
 ```
-次回，第5回講義ではpostgress及びPgRoutingを使用します．
+次回，第5回講義ではpostgress及びPgRoutingを導入まで行います．
 Dockerfileをカスタマイズしても問題ありません．1つのコンテナを多機能に肥大化させる設計思想はあまり好きになれないですが，禁止はしません…
 次回はcompose.ymlをカスタマイズして，orihimeと別コンテナでpostgresのコンテナを起動して使用します．  
 - HW spec:4G or more(recommend 8G or more)
