@@ -15,9 +15,9 @@ orihime:sweet_melodyのbuildはDokcerfileを参照してください．上述の
 ```
 docker pull geojackass/orihime:sweet_melody
 ```
-次回，第5回講義ではpostgress及びPgRoutingを導入まで行います．
+第5回講義ではpostgress及びPgRoutingを導入まで行います．
 Dockerfileをカスタマイズしても問題ありません．1つのコンテナを多機能に肥大化させる設計思想はあまり好きになれないですが，禁止はしません…
-次回はcompose.ymlをカスタマイズして，orihimeと別コンテナでpostgresのコンテナを起動して使用します．  
+第5回講義ではcompose.ymlをカスタマイズして，orihimeと別コンテナでpostgresのコンテナを起動して動作確認します．  
 - HW spec:4G or more(recommend 8G or more)
 
 ### Docker Compose USAGE
