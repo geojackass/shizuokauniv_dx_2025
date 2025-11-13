@@ -4,8 +4,10 @@
 ![top_image](docs/img/pp47.png "vol5_top")
 ### 資料は下記URLからご覧ください
 - 第4回講義(GithubPages) https://geojackass.github.io/shizuokauniv_dx_2025/
+- 第4回講義エピローグ(GithubPages) https://geojackass.github.io/shizuokauniv_dx_2025/#/102
 - 第5回講義(GithubPages) https://geojackass.github.io/shizuokauniv_dx_2025/#/46
 - 第4回講義(gitclone) /docs/静岡大学20251029講義資料.pdf
+- 第4回講義エピローグ /docs/静岡大学20251029講義資料エピローグ.pdf
 - 第5回講義(gitclone) /docs/静岡大学20251105講義資料.pdf
 
 - 第4回はR，第5回はpythonとQGISを使用します．Dockerで環境を構築する場合は，pythonとRの必要ライブラリが使用可能となります．
